@@ -1,0 +1,39 @@
+PROG,→,begin STML_LIST end,,,,,,,,,,
+STML_LIST,→,aH:=S STMT_TAIL,|,if COND then STMT ELSE_PART STMT_TAIL,|,while COND do STMT STMT_TAIL,|,read(aH) STMT_TAIL,|,write(aH) STMT_TAIL,|,begin STML_LIST end STMT_TAIL
+STMT_TAIL,→,;STMT STMT_TAIL,|,λ,,,,,,,,
+STMT,→,aH:=S,|,if COND then STMT ELSE_PART,|,while COND do STMT,|,read(aH),|,write(S),|,begin STML_LIST end
+ELSE_PART,→,else STMT ,|,λ,,,,,,,,
+H,→,[S],|,λ,,,,,,,,
+COND,→,(S)VU CMP S,|,aHVU  CMP S,|,kVU  CMP S,|,sqrt(S)VU  CMP S,|,exp(S)VU  CMP S,|,log(S)VU  CMP S
+CMP,→,=,|,<>,|,<,|,<=,|,>,|,>=
+S,→,(S)VU,|,aHVU,|,kVU,|,sqrt(S)VU,|,exp(S)VU,|,log(S)VU
+U,→,+TU,|,-TU,|,λ,,,,,,
+T,→,(S)V,|,aHV,|,kV,|,sqrt(S)V,|,exp(S)V,|,log(S)V
+V,→,*FV,|,/FV,|,λ,,,,,,
+F,→,(S),|,aH,|,k,|,sqrt(S),|,exp(S),|,log(S)
+,,,,,,,,,,,,
+Шаги по преобразованию в Нестрогую Нормальную Форму Грейбах:,,,,,,,,,,,,
+1) Арифметические операции,,,,,,,,,,,,
+S,→,S+T | S-T | T,,,,,,,,,,
+T,→,T*F | T/F | F,,,,,,,,,,
+F,→,(S) | aH | k | FUNC,,,,,,,,,,
+"Устраним левую рекурсию, введя новые нетерминалы. Приведём в ННФГ",,,,,,,,,,,,
+S,→,(S)U | aHU | kU | sqrt(S)U | exp(S)U | log(S)U,,,,,,,,,,
+U,→,+TU | -TU | λ,,,,,,,,,,
+T,→,(S)V | aHV | kV | sqrt(S)V | exp(S)V | log(S)V,,,,,,,,,,
+V,→,*F | /F | λ,,,,,,,,,,
+F,→,(S) | aH | k | sqrt(S) | exp(S) | log(S),,,,,,,,,,
+,,,,,,,,,,,,
+2) Структура программы,,,,,,,,,,,,
+STMT_LIST,→,STMT STMT_TAIL,,,,,,,,,,
+STMT,→,ASSIGN | IF_STMT | WHILE_STMT | READ_STMT | WRITE_STMT | PROG,,,,,,,,,,
+COND,→,S CMP S,,,,,,,,,,
+"Нетерминалы в начале правых частей правил заменим на все его возможные правые части, пока в начале не окажется терминал.",,,,,,,,,,,,
+STMT_LIST,→,aH:=S STMT_TAIL | if COND then STMT ELSE_PART STMT_TAIL | while COND do STMT STMT_TAIL | read(aH) STMT_TAIL | write(aH) STMT_TAIL | begin STML_LIST end STMT_TAIL,,,,,,,,,,
+STMT,→,aH:=S | if COND then STMT ELSE_PART | while COND do STMT | read(aH) | write(aH) | begin STML_LIST end,,,,,,,,,,
+COND,→,(S)U CMP S | aHU CMP S | kU CMP S | sqrt(S)U CMP S | exp(S)U CMP S | log(S)U CMP S,,,,,,,,,,
+Следующие правила стали избыточными,,,,,,,,,,,,
+ASSIGN,→,aH:=S,,,,,,,,,,
+IF_STMT,→,if COND then STMT ELSE_PART,,,,,,,,,,
+ELSE_PART,→,else STMT | λ,,,,,,,,,,
+WHILE_STMT,→,while COND do STMT,,,,,,,,,,

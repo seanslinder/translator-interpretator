@@ -1,0 +1,23 @@
+"G (L) = { Σ, N, S, P }",,,,,,,,,,,,,,,,,
+"Σ = { begin, end, if, then, else, while, do, read, write, sqrt, exp, log, a (идентификатор), k (число), :=, +, -, *, /, =, <>, <, <=, >, >=, (, ), [, ], ; }",,,,,,,,,,,,,,,,,
+"N = { PROG, STMT_LIST, STMT_TAIL, STMT, ASSIGN, H, IF_STMT, ELSE_PART, WHILE_STMT, COND, CMP, READ_STMT, WRITE_STMT, S, T, F, FUNC }",,,,,,,,,,,,,,,,,
+S = { PROG },,,,,,,,,,,,,,,,,
+P = {,,,,,,,,,,,,,,,,,
+1,PROG,→,begin,STML_LIST,end,,,,,,,,,,,,Структура программы
+2,STML_LIST,→,STMT,STMT_TAIL,,,,,,,,,,,,,
+3,STMT_TAIL,→,;,STMT,STMT_TAIL,|,λ,,,,,,,,,,
+4,STMT,→,ASSIGN,|,IF_STMT,|,WHILE_STMT,|,READ_STMT,|,WRITE_STMT,|,PROG,,,,Виды операторов
+5,ASSIGN,→,a,H,:=,S,,,,,,,,,,,Оператор присваивания
+6,H,→,[,S,],|,λ,,,,,,,,,,
+7,IF_STMT,→,if,COND,then,STMT,ELSE_PART,,,,,,,,,,Условный оператор
+8,ELSE_PART,→,else,STMT,|,λ,,,,,,,,,,,
+9,WHILE_STMT,→,while,COND,do,STMT,,,,,,,,,,,Цикл while
+10,COND,→,S,CMP,S,,,,,,,,,,,,Логические условия
+11,CMP,→,=,|,<>,|,<,|,<=,|,>,|,>=,,,,
+12,READ_STMT,→,read,(,a,H,),,,,,,,,,,Ввод и вывод
+13,WRITE_STMT,→,write,(,a,H,),,,,,,,,,,
+14,S,→,S,+,T,|,S,-,T,|,T,,,,,,Арифметические операции
+15,T,→,T,*,F,|,T,/,F,|,F,,,,,,
+16,F,→,(,S,),|,a,H,|,k,|,FUNC,,,,,
+17,FUNC,→,sqrt,(,S,),|,exp,(,S,),|,log,(,S,),Встроенные функции
+},,,,,,,,,,,,,,,,,

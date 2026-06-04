@@ -1,0 +1,26 @@
+PROG,→,begin STML_LIST end,,,,,,,,,,
+,,□ □ □,,,,,,,,,,
+STML_LIST,→,aH:=S STMT_TAIL,|,if COND then STMT ELSE_PART STMT_TAIL,|,while COND do STMT STMT_TAIL,|,read(aH) STMT_TAIL,|,write(S) STMT_TAIL,|,begin STML_LIST end STMT_TAIL
+,,a □ □ := □,,□ □ 1 □ 3 □,,4 □ 1 5 □,,□ □ a □ r □,,□ □ □ w □,,□ □ □ □
+STMT_TAIL,→,;STMT STMT_TAIL,|,λ,,,,,,,,
+,,□ □ □,,,,,,,,,,
+STMT,→,aH:=S,|,if COND then STMT ELSE_PART,|,while COND do STMT,|,read(aH),|,write(S),|,begin STML_LIST end
+,,a □ □ :=,,□ □ 1 □ 3,,4 □ 1 5,,□ □ a □ r,,□ □ □ w,,□ □ □
+ELSE_PART,→,else STMT ,|,λ,,,,,,,,
+,,2 □,,,,,,,,,,
+H,→,[S],|,λ,,,,,,,,
+,,□ □ i,,,,,,,,,,
+COND,→,(S)VU CMP S,|,aHVU  CMP S,|,kVU  CMP S,|,sqrt(S)VU  CMP S,|,exp(S)VU  CMP S,|,log(S)VU  CMP S
+,,□ □ □ □ □ □ CMP_OP,,a □ □ □ □ CMP_OP,,k □ □ □ CMP_OP,,□ □ □ sqrt_op □ □ □ CMP_OP,,□ □ □ exp_op □ □ □ CMP_OP,,□ □ □ log_op □ □ □ CMP_OP
+CMP,→,=,|,<>,|,<,|,<=,|,>,|,>=
+,,□,,□,,□,,□,,□,,□
+S,→,(S)VU,|,aHVU,|,kVU,|,sqrt(S)VU,|,exp(S)VU,|,log(S)VU
+,,□ □ □ □ □,,a □ □ □,,k □ □,,□ □ □ sqrt_op □ □,,□ □ □ exp_op □ □,,□ □ □ log_op □ □
+U,→,+TU,|,-TU,|,λ,,,,,,
+,,□ □ +,,□ □ -,,,,,,,,
+T,→,(S)V,|,aHV,|,kV,|,sqrt(S)V,|,exp(S)V,|,log(S)V
+,,□ □ □ □,,a □ □,,k □,,□ □ □ sqrt_op □,,□ □ □ exp_op □,,□ □ □ log_op □
+V,→,*FV,|,/FV,|,λ,,,,,,
+,,□ □ *,,□ □ /,,,,,,,,
+F,→,(S),|,aH,|,k,|,sqrt(S),|,exp(S),|,log(S)
+,,□ □ □,,a □,,k,,□ □ □ sqrt_op,,□ □ □ exp_op,,□ □ □ log_op

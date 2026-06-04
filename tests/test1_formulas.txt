@@ -1,0 +1,8 @@
+begin
+  read(x);
+  read(y);
+  res1 := sqrt(x) + exp(y);
+  res2 := log(x) * (y - x) / 2;
+  write(res1);
+  write(res2)
+end
