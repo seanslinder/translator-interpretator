@@ -6,7 +6,7 @@ This project implements a translator-interpreter for a custom (Pascal-like) prog
 
 ## Documentation
 
-Artifacts/ folder includes the task for creating translator-interpretator and all the artifacts that were used to build it. Link to the Google Drive folder with artifacts: [Artifacts in Google Drive](https://drive.google.com/drive/folders/18g7dTZFj2QGKKR__A-MO6BJPWPQL112d?usp=sharing)
+artifacts/ folder includes the task for creating translator-interpretator and all the artifacts that were used to build it. Link to the Google Drive folder with artifacts: [Artifacts in Google Drive](https://drive.google.com/drive/folders/18g7dTZFj2QGKKR__A-MO6BJPWPQL112d?usp=sharing)
 
 ## How to run
 
