@@ -3,7 +3,7 @@
 "N = { PROG, STMT_LIST, STMT_TAIL, STMT, ASSIGN, H, IF_STMT, ELSE_PART, WHILE_STMT, COND, CMP, READ_STMT, WRITE_STMT, S, T, F, FUNC }",,,,,,,,,,,,,,,,,
 S = { PROG },,,,,,,,,,,,,,,,,
 P = {,,,,,,,,,,,,,,,,,
-1,PROG,→,begin,STML_LIST,end,,,,,,,,,,,,Структура программы
+1,PROG,→,begin,STMT_LIST,end,,,,,,,,,,,,Структура программы
 2,STML_LIST,→,STMT,STMT_TAIL,,,,,,,,,,,,,
 3,STMT_TAIL,→,;,STMT,STMT_TAIL,|,λ,,,,,,,,,,
 4,STMT,→,ASSIGN,|,IF_STMT,|,WHILE_STMT,|,READ_STMT,|,WRITE_STMT,|,PROG,,,,Виды операторов
@@ -15,7 +15,7 @@ P = {,,,,,,,,,,,,,,,,,
 10,COND,→,S,CMP,S,,,,,,,,,,,,Логические условия
 11,CMP,→,=,|,<>,|,<,|,<=,|,>,|,>=,,,,
 12,READ_STMT,→,read,(,a,H,),,,,,,,,,,Ввод и вывод
-13,WRITE_STMT,→,write,(,a,H,),,,,,,,,,,
+13,WRITE_STMT,→,write,(,S,),,,,,,,,,,,
 14,S,→,S,+,T,|,S,-,T,|,T,,,,,,Арифметические операции
 15,T,→,T,*,F,|,T,/,F,|,F,,,,,,
 16,F,→,(,S,),|,a,H,|,k,|,FUNC,,,,,
